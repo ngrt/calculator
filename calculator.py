@@ -1,10 +1,10 @@
-from tinker import *
+from tkinter import *
 
 #master object = the frame
 master = Tk()
 
 #textbox displaying the calculation
-display = Entry(master, width = 11, justify = 'right', bd = 0, bd = 'lightgrey')
+display = Entry(master, width = 11, justify = 'right', bd = 0, bg = 'lightgrey')
 
 #the windows name
 master.title("Calculator")
@@ -71,7 +71,31 @@ b_dot = Button(master, text=".", command=lambda: calc.numb_butt("."))
 plus = Button(master, text="+", command=lambda: calc.set_op(0))
 minus = Button(master, text="-", command=lambda: calc.set_op(1))
 times = Button(master, text="*", command=lambda: calc.set_op(2))
-dives = Button(master, text="/", command=lambda: calc.set_op(3))
+divide = Button(master, text="/", command=lambda: calc.set_op(3))
 
-equal = Button(master, text="=", command=lambda: calc.equate())
+equals = Button(master, text="=", command=lambda: calc.equate())
 clear = Button(master, text="c", command=lambda: calc.clear())
+
+#Displaying buttons
+
+display.place(x=0, y=2)
+b7.grid(row=1, column=0)
+b8.grid(row=1, column=1)
+b9.grid(row=1, column=2)
+b4.grid(row=2, column=0)
+b5.grid(row=2, column=1)
+b6.grid(row=2, column=2)
+b1.grid(row=3, column=0)
+b2.grid(row=3, column=1)
+b3.grid(row=3, column=2)
+b0.grid(row=4, column=0)
+b_dot.grid(row=4, column=1)
+clear.grid(row=4, column=2)
+
+plus.grid(row=0, column=3)
+minus.grid(row=1, column=3)
+times.grid(row=2, column=3)
+divide.grid(row=3, column=3)
+equals.grid(row=4, column=3)
+
+master.mainloop()
