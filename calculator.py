@@ -1,10 +1,11 @@
 from tkinter import *
+from math import cos, sin, exp, pi
 
 #master object = the frame
 master = Tk()
 
 #textbox displaying the calculation
-display = Entry(master, width = 11, justify = 'right', bd = 0, bg = 'lightgrey')
+display = Entry(master, width=11, justify='right', bd=0, bg='lightgrey')
 
 #the windows name
 master.title("Calculator")
@@ -36,17 +37,32 @@ class Calculator:
                 self.result = float(self.var1) * float(self.var2)
         elif self.operator is 3:
                 self.result = float(self.var1) / float(self.var2)
+        elif self.operator is 4:
+                self.result = cos(float(self.var1))
+        elif self.operator is 5:
+                self.result = sin(float(self.var1))
+        elif self.operator is 6:
+                self.result = sin(float(self.var1)) / cos(float(self.var1))
+        elif self.operator is 7:
+                self.result = exp(float(self.var1))
+        elif self.operator is "pi":
+                self.result = pi
         display.delete(0, END)
         display.insert(0, string=self.result)
 
     def set_op(self, op):
         self.operator = op
         display.delete(0, END)
-        if self.current is 0:
-            self.current = 1
-        else:
+
+        if self.operator in [4, 5, 6, 7, "pi"]:
             self.equate()
-            self.var2 = ""
+        else:
+            if self.current is 0:
+                self.current = 1
+            else:
+                self.equate()
+                self.var1 = self.result
+                self.var2 = ""
 
     def clear(self):
         self.__init__()
@@ -73,6 +89,12 @@ minus = Button(master, text="-", command=lambda: calc.set_op(1))
 times = Button(master, text="*", command=lambda: calc.set_op(2))
 divide = Button(master, text="/", command=lambda: calc.set_op(3))
 
+cosB = Button(master, text="cos", command=lambda: calc.set_op(4))
+sinB = Button(master, text="sin", command=lambda: calc.set_op(5))
+tanB = Button(master, text="tan", command=lambda: calc.set_op(6))
+expB = Button(master, text="exp", command=lambda: calc.set_op(7))
+piB = Button(master, text="pi", command=lambda: calc.numb_butt(pi))
+
 equals = Button(master, text="=", command=lambda: calc.equate())
 clear = Button(master, text="c", command=lambda: calc.clear())
 
@@ -97,5 +119,12 @@ minus.grid(row=1, column=3)
 times.grid(row=2, column=3)
 divide.grid(row=3, column=3)
 equals.grid(row=4, column=3)
+
+
+cosB.grid(row=0, column=4)
+sinB.grid(row=1, column=4)
+tanB.grid(row=2, column=4)
+expB.grid(row=3, column=4)
+piB.grid(row=4, column=4)
 
 master.mainloop()
