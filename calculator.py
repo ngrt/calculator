@@ -38,3 +38,40 @@ class Calculator:
                 self.result = float(self.var1) / float(self.var2)
         display.delete(0, END)
         display.insert(0, string=self.result)
+
+    def set_op(self, op):
+        self.operator = op
+        display.delete(0, END)
+        if self.current is 0:
+            self.current = 1
+        else:
+            self.equate()
+            self.var2 = ""
+
+    def clear(self):
+        self.__init__()
+        display.delete(0, END)
+
+
+calc = Calculator()
+
+b0 = Button(master, text="0", command=lambda: calc.numb_butt(0))
+b1 = Button(master, text="1", command=lambda: calc.numb_butt(1))
+b2 = Button(master, text="2", command=lambda: calc.numb_butt(2))
+b3 = Button(master, text="3", command=lambda: calc.numb_butt(3))
+b4 = Button(master, text="4", command=lambda: calc.numb_butt(4))
+b5 = Button(master, text="5", command=lambda: calc.numb_butt(5))
+b6 = Button(master, text="6", command=lambda: calc.numb_butt(6))
+b7 = Button(master, text="7", command=lambda: calc.numb_butt(7))
+b8 = Button(master, text="8", command=lambda: calc.numb_butt(8))
+b9 = Button(master, text="9", command=lambda: calc.numb_butt(9))
+
+b_dot = Button(master, text=".", command=lambda: calc.numb_butt("."))
+
+plus = Button(master, text="+", command=lambda: calc.set_op(0))
+minus = Button(master, text="-", command=lambda: calc.set_op(1))
+times = Button(master, text="*", command=lambda: calc.set_op(2))
+dives = Button(master, text="/", command=lambda: calc.set_op(3))
+
+equal = Button(master, text="=", command=lambda: calc.equate())
+clear = Button(master, text="c", command=lambda: calc.clear())
