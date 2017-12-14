@@ -19,4 +19,22 @@ class Calculator:
 
     def numb_butt(self, index):
         if self.current is 0:
-            self.
+            self.var1 = str(self.var1) + str(index)
+            display.delete(0, END)
+            display.insert(0, string=self.var1)
+        else:
+            self.var2 = str(self.var2) + str(index)
+            display.delete(0, END)
+            display.insert(0, string=self.var2)
+
+    def equate(self):
+        if self.operator is 0:
+            self.result = float(self.var1) + float(self.var2)
+        elif self.operator is 1:
+                self.result = float(self.var1) - float(self.var2)
+        elif self.operator is 2:
+                self.result = float(self.var1) * float(self.var2)
+        elif self.operator is 3:
+                self.result = float(self.var1) / float(self.var2)
+        display.delete(0, END)
+        display.insert(0, string=self.result)
